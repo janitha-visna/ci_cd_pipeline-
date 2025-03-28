@@ -8,7 +8,7 @@ pipeline {
     }
     stage("Test") {
       steps {
-        sh 'sudo npm install'  // ❌ Possible error
+        sh 'sudo apt install npm'  // ❌ Possible error
         sh 'npm test'
       }
     }

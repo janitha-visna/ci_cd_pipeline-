@@ -1,14 +1,18 @@
 pipeline {
-  agent any
+  agent {
+    docker {
+      image 'node:18' // ✅ Use Node.js image instead of installing npm
+    }
+  }
   stages {
-    stage("checkout") {
+    stage("Checkout") {
       steps {
         checkout scm
       }
     }
     stage("Test") {
       steps {
-        sh 'sudo apt install npm'  // ❌ Possible error
+        sh 'npm install'  // ✅ No sudo needed
         sh 'npm test'
       }
     }
@@ -17,5 +21,6 @@ pipeline {
         sh 'npm run build'
       }
     }
-  }  // ✅ Missing closing bracket added here
+  }
 }
+

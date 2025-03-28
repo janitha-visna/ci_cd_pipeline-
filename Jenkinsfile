@@ -1,7 +1,7 @@
 pipeline {
   agent {
-    docker {
-      image 'node:18' // ✅ Use Node.js image instead of installing npm
+    dockerContainer {
+      image 'node:18' // ✅ Corrected agent type
     }
   }
   stages {
@@ -12,7 +12,7 @@ pipeline {
     }
     stage("Test") {
       steps {
-        sh 'npm install'  // ✅ No sudo needed
+        sh 'npm install'
         sh 'npm test'
       }
     }
@@ -23,4 +23,3 @@ pipeline {
     }
   }
 }
-
